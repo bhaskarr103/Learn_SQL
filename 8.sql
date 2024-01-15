@@ -24,3 +24,23 @@ having COUNT(*) < 2;
 /* The HAVING clause in SQL is used to filter the results of a GROUP BY query based on a specified condition.
  While the WHERE clause filters individual rows before they are grouped, the HAVING clause filters the grouped results 
  after the grouping has taken place. It is commonly used with aggregate functions to filter groups based on aggregated values. */
+
+ -- SELECT NAME OF EMPLOYEE WORKING IN I.T.
+ 
+ SELECT e_name FROM students
+ WHERE dept IN (SELECT dept FROM students
+ WHERE dept = 'IT');
+ 
+ -- or
+ 
+ SELECT e_name FROM students
+ WHERE dept IN (SELECT dept FROM students
+ group by dept
+ HAVING COUNT(*) < 2);
+ 
+ -- WRITE A QUERY TO DISPLAY HIGHEST SALARY DEPARTMENT-WISE & NAME OF EMPLOYEE WHO'S TAKING THAT SALARY.
+ 
+ 
+ SELECT e_name FROM students
+ WHERE salary IN (SELECT MAX(salary) FROM students
+ group by dept);
